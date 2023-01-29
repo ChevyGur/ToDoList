@@ -30,25 +30,21 @@ namespace User.Controllers
                 return Unauthorized();
             if (getUser.IsAdmin)
             {
-
                 claims.Add(
                     new Claim("type", "Admin")
                 );
             }
             else
             {
-
                 claims.Add(
                     new Claim("type", "User")
                 );
-
             }
 
             claims.Add(new Claim("Id", getUser.Id.ToString()));
-
             var token = TokenService.GetToken(claims);
-
-            return new OkObjectResult(TokenService.WriteToken(token));
+            String r = TokenService.WriteToken(token);
+            return new OkObjectResult(r);
         }
 
 
@@ -56,7 +52,7 @@ namespace User.Controllers
         [Route("[action]")]
         [Authorize(Policy = "Admin")]
         public ActionResult<List<User>> GetAll() =>
-            userService.GetAll();
+            userService?.GetAll();
 
 
         [HttpGet("{id}")]
@@ -68,7 +64,7 @@ namespace User.Controllers
                 return NotFound();
             return user;
         }
-        
+
         [HttpPost("{user}")]
         [Authorize(Policy = "Admin")]
         public ActionResult Post(User user)

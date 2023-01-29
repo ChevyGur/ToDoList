@@ -38,9 +38,21 @@
         <tbody id="tasks"></tbody>
     </table>
 
+    <h3>GetById</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="getItemById()">
+        <input type="text" id="get-item" placeholder="item id">
+        <input type="submit" value="get">
+    </form>
+    <tr>
+        <h2 id="name"></h2>
+        <h2 id="isDone"></h2>
+    </tr>
+
+
+
     <script src="js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
-        getItems();
+        // getItems();
     </script>
 </body>
 

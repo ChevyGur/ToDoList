@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel;
 
 namespace Task.Services
 {
@@ -25,10 +26,18 @@ namespace Task.Services
                 ValidIssuer = issuer,
                 ValidAudience = issuer,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SXkSqsKyNUyvGbnHs7ke2NCq8zQzNLW7mPmHbnZZ")),
-                ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                ClockSkew = TimeSpan.Zero, // remove delay of token when expire
             };
 
         public static string WriteToken(SecurityToken token) =>
             new JwtSecurityTokenHandler().WriteToken(token);
+
+        public static int decode(String st)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var decodedValue = handler.ReadJwtToken(st) as JwtSecurityToken;
+            var id = int.Parse(decodedValue.Claims.First(claim => claim.Type == "Id").Value);
+            return id;
+        }
     }
 }

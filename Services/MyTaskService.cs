@@ -9,21 +9,22 @@ using System;
 using System.Net;
 using System.Text.Json;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Task.Services
 {
     using Task.Models;
-    public class TaskService:ITaskService
+    public class TaskService : ITaskService
     {
-            List<Task> tasks{ get; }
+        List<Task> tasks { get; }
 
-        private IWebHostEnvironment  webHost;
+        private IWebHostEnvironment webHost;
         private string filePath;
         public TaskService(IWebHostEnvironment webHost)
         {
             this.webHost = webHost;
             this.filePath = Path.Combine(webHost.ContentRootPath, "Data", "task.json");
-             using (var jsonFile = File.OpenText(filePath))
+            using (var jsonFile = File.OpenText(filePath))
             {
                 tasks = JsonSerializer.Deserialize<List<Task>>(jsonFile.ReadToEnd(),
                 new JsonSerializerOptions
@@ -32,17 +33,18 @@ namespace Task.Services
                 });
             }
         }
+
         private void saveToFile()
         {
             File.WriteAllText(filePath, JsonSerializer.Serialize(tasks));
         }
-        
-        public List<Task> GetAll() => tasks;
-        
+
+        public List<Task> GetAll(int UserId) => tasks.Where(t => t.UserId == UserId)?.ToList();
+
         public Task? Get(int Id) => tasks.FirstOrDefault(t => t.Id == Id);
         public void Post(Task t)
         {
-            t.Id =  tasks.Count() + 1;
+            t.Id = tasks.Count() + 1;
             tasks.Add(t);
         }
 
@@ -52,6 +54,7 @@ namespace Task.Services
             if (task is null)
                 return;
             tasks.Remove(task);
+            saveToFile();
         }
 
         public bool Update(Task t)
@@ -60,12 +63,13 @@ namespace Task.Services
             if (index == -1)
                 return false;
             tasks[index] = t;
+            saveToFile();
             return true;
         }
 
         public int Count => tasks.Count();
 
-        
+
 
     }
 

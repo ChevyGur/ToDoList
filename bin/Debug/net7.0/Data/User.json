@@ -16,5 +16,11 @@
         "Name": "Dasi",
         "IsAdmin": false,
         "Password": "df78jkj"
+    },
+    {
+        "Id": 4,
+        "Name": "dfghjk",
+        "IsAdmin": true,
+        "Password": "ergtj"
     }
 ]

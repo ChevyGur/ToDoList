@@ -14,27 +14,35 @@ namespace Task.Controller
     [Route("[controller]")]
     public class TaskController : ControllerBase
     {
+
         ITaskService TaskService;
 
         public TaskController(ITaskService TaskService)
         {
-            this.TaskService=TaskService;
+            this.TaskService = TaskService;
         }
-        
-      
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Task>> Get() =>
-            TaskService.GetAll();
 
-        [HttpGet("{id}")]
-        public ActionResult<Task> Get(int id)
+
+        [HttpGet("{token}")]
+        public ActionResult<IEnumerable<Task>> Get(string token)
         {
-            var task = TaskService.Get(id);
-            if (task == null)
-                return NotFound();
-            return task;
+            Console.WriteLine(token);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            return TaskService.GetAll(TokenService.decode(token));
+
         }
+
+        // [HttpGet("{id}")]
+        // public ActionResult<Task> Get(int id)
+        // {
+        //     var task = TaskService.Get(id);
+        //     if (task == null)
+        //         return NotFound();
+        //     return task;
+        // }
 
         [HttpPost]
         public ActionResult Post(Task t)

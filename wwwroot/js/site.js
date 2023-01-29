@@ -1,20 +1,42 @@
 const uri = '/Task';
 let tasks = [];
 
-function getItems() {
-    fetch(uri)
+function getUser() {
+
+}
+
+function getItems(token)
+{
+    alert(token + "             " + "eowww")
+    fetch(`https://localhost:7123/Task/${token}`)
+        .then(response => response.json())
+        .then(data => {  alert(token + "             " + "eowww")
+            _displayItems(data)
+        }
+        )
+        .catch(error => console.error('Unable to get items.', error));
+}
+function getItemById() {
+    const id = document.getElementById('get-item').value;
+    fetch(`https://localhost:7123/Task/${id}`)
         .then(response => response.json())
         .then(data => {
-            _displayItems(data)
-            alert(data.length+"getItem")
+            showItem(data);
         }
         )
         .catch(error => console.error('Unable to get items.', error));
 }
 
+function showItem(data) {
+    const name = document.getElementById('name');
+    const isDone = document.getElementById('isDone');
+    name.innerText = data.name;
+    isDone.innerText = data.isDone;
+
+}
+
 function addItem() {
     const addNameTextbox = document.getElementById('add-name');
-
     const item = {
         isDone: false,
         name: addNameTextbox.value.trim()
@@ -30,7 +52,7 @@ function addItem() {
     })
         .then(response => response.json())
         .then(() => {
-            getItems();
+            getItems(token);
             addNameTextbox.value = '';
         })
         .catch(error => console.error('Unable to add item.', error));
@@ -41,8 +63,9 @@ function deleteItem(id) {
         method: 'DELETE'
     })
         .then(() => {
-            getItems()
-        debugger})
+            getItems(token)
+            debugger
+        })
         .catch(error => console.error('Unable to delete item.', error));
 }
 
@@ -71,7 +94,7 @@ function updateItem() {
         },
         body: JSON.stringify(item)
     })
-        .then(() => getItems())
+        .then(() => getItems(token))
         .catch(error => console.error('Unable to update item.', error));
 
     closeInput();
@@ -132,7 +155,6 @@ function _displayItems(data) {
 //////////////////////
 var token = "";
 function Login() {
-
     const name = document.getElementById('name');
     const password = document.getElementById('password');
     var myHeaders = new Headers();
@@ -163,9 +185,29 @@ function Login() {
                 alert("not exist!!")
             } else {
                 token = result;
-                alert(result)
-                location.href = "task.html"
+                alert(token)
+                location.href = "task.html";
+                getItems(token);
             }
         }).catch((error) => alert("error", error));
-
+    
+    // addFuncByStatus();
 };
+
+// function addFuncByStatus() {
+//     fetch("https://localhost:7123", requestOptions)
+//         .then((response) => response.text())
+//         .then((result) => {
+//             if (result.includes("401")) {
+//                 name.value = "";
+//                 password.value = "";
+//                 alert("not exist!!")
+//             } else {
+//                 token = result;
+//                 // var handler = new JwtSecurityTokenHandler();
+//                 // var decodedValue = handler.ReadJwtToken(token);
+//                 // alert(decodedValue.Id)
+//                 location.href = "task.html"
+//             }
+//         }).catch((error) => alert("error", error));
+// }

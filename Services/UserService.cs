@@ -16,16 +16,16 @@ namespace User.Services
     public class UserService : IUserService
     {
 
-        private static SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SXkSqsKyNUyvGbnHs7ke2NCq8zQzNLW7mPmHbnZZ"));
-        private static string issuer = "";
-        public static SecurityToken GetToken(List<Claim> claims) =>
-            new JwtSecurityToken(
-                issuer,
-                issuer,
-                claims,
-                expires: DateTime.Now.AddDays(30.0),
-                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
-            );
+        // private static SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SXkSqsKyNUyvGbnHs7ke2NCq8zQzNLW7mPmHbnZZ"));
+        // private static string issuer = "";
+        // public static SecurityToken GetToken(List<Claim> claims) =>
+        //     new JwtSecurityToken(
+        //         issuer,
+        //         issuer,
+        //         claims,
+        //         expires: DateTime.Now.AddDays(30.0),
+        //         signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+        //     );
 
 
         List<User>? users { get; }
@@ -59,6 +59,7 @@ namespace User.Services
         {
             u.Id = users.Count() + 1;
             users.Add(u);
+            saveToFile();
         }
 
         public void Delete(int id)
@@ -67,6 +68,7 @@ namespace User.Services
             if (user is null)
                 return;
             users.Remove(user);
+            saveToFile();
         }
 
         public int Count => users.Count();
