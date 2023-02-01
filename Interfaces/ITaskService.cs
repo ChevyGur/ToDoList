@@ -7,9 +7,9 @@ namespace Task.Interfaces
     public interface ITaskService
     {
         List<Task>? GetAll(int userId);
-        Task Get(int id);
+        Task Get(int id, int userId);
         void Post(Task t);
-        void Delete(int id);
+        void Delete(int id, int userId);
         bool Update(Task t);
         int Count { get; }
     }

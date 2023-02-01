@@ -1,20 +1,7 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Task.Services;
-using User.Interfaces;
-using User.Services;
-using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,8 +16,6 @@ builder.Services.AddAuthentication(options =>
     {
         cfg.TokenValidationParameters = TokenService.GetTokenValidationParameters();
     });
-// builder.Services.AddUsers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -55,7 +40,6 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddSingleton<Task.Interfaces.ITaskService, Task.Services.TaskService>();
 
 builder.Services.AddSingleton<User.Interfaces.IUserService, User.Services.UserService>();
-// builder.Services.AddScoped
 
 builder.Services.AddAuthorization(cfg =>
         {
@@ -64,9 +48,6 @@ builder.Services.AddAuthorization(cfg =>
         });
 
 var app = builder.Build();
-// app.UseRouter();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
 
@@ -87,9 +68,6 @@ app.MapControllers();
 
 app.Run();
 
-
-// OrderManagement.Extention.AddOrders();
-// add scoped
 namespace OrderManagement
 {
     static class Extention

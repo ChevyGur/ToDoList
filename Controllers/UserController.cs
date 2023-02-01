@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
 using System.Security.Claims;
-using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Task.Models;
 using Task.Services;
-using User.Models;
 using User.Interfaces;
 namespace User.Controllers
 {
+    using Microsoft.Net.Http.Headers;
+    using Task.Interfaces;
     using User.Models;
     [ApiController]
     [Route("[controller]")]
@@ -20,6 +17,7 @@ namespace User.Controllers
         {
             this.userService = userService;
         }
+        
         [HttpPost]
         [Route("[action]")]
         public ActionResult<String> Login([FromBody] User user)
@@ -34,32 +32,26 @@ namespace User.Controllers
                     new Claim("type", "Admin")
                 );
             }
-            else
-            {
-                claims.Add(
-                    new Claim("type", "User")
-                );
-            }
+
+            claims.Add(
+                new Claim("type", "User")
+            );
+
 
             claims.Add(new Claim("Id", getUser.Id.ToString()));
-            var token = TokenService.GetToken(claims);
-            String r = TokenService.WriteToken(token);
-            return new OkObjectResult(r);
+            return new OkObjectResult(TokenService.WriteToken(TokenService.GetToken(claims)));
         }
 
-
         [HttpGet]
-        [Route("[action]")]
         [Authorize(Policy = "Admin")]
-        public ActionResult<List<User>> GetAll() =>
-            userService?.GetAll();
-
+        public ActionResult<List<User>> GetAll() => userService.GetAll();
 
         [HttpGet("{id}")]
-        [Authorize(Policy = "Admin")]
-        public ActionResult<User> Get(int id)
+        [Authorize(Policy = "User")]
+        public ActionResult<User> GetMyUser()
         {
-            var user = userService.Get(id);
+            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            var user = userService.Get(TokenService.decode(token));
             if (user == null)
                 return NotFound();
             return user;
@@ -67,7 +59,7 @@ namespace User.Controllers
 
         [HttpPost("{user}")]
         [Authorize(Policy = "Admin")]
-        public ActionResult Post(User user)
+        public ActionResult Post([FromBody] User user)
         {
             userService.Post(user);
             return CreatedAtAction(nameof(Post), new { Id = user.Id }, user);

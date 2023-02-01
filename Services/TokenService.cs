@@ -2,7 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel;
+using Task.Interfaces;
 
 namespace Task.Services
 {
@@ -11,6 +11,10 @@ namespace Task.Services
         private static SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SXkSqsKyNUyvGbnHs7ke2NCq8zQzNLW7mPmHbnZZ"));
 
         private static string issuer = "https://user-demo.com";
+
+        public TokenService()
+        {
+        }
 
         public static SecurityToken GetToken(List<Claim> claims) =>
             new JwtSecurityToken(
@@ -26,7 +30,7 @@ namespace Task.Services
                 ValidIssuer = issuer,
                 ValidAudience = issuer,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SXkSqsKyNUyvGbnHs7ke2NCq8zQzNLW7mPmHbnZZ")),
-                ClockSkew = TimeSpan.Zero, // remove delay of token when expire
+                ClockSkew = TimeSpan.Zero, 
             };
 
         public static string WriteToken(SecurityToken token) =>

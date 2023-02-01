@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\index.html"
     },
     {
+      "Id": "D:\\Core\\MyTaskProject\\wwwroot\\js\\logIn.js",
+      "PackagePath": "staticwebassets\\js\\logIn.js"
+    },
+    {
       "Id": "D:\\Core\\MyTaskProject\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

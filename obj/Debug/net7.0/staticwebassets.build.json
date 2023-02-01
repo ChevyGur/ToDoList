@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cAsjkRje/hRN3iliXNoWlx1mgayn7fqtzbkTBjnzfcA=",
+  "Hash": "DFms8hzJS7d9/U7c1SynkFHVSMa35N6rtUKAbjtj93g=",
   "Source": "Task",
   "BasePath": "_content/Task",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "D:\\Core\\MyTaskProject\\wwwroot\\js\\logIn.js",
+      "SourceId": "Task",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Core\\MyTaskProject\\wwwroot\\",
+      "BasePath": "_content/Task",
+      "RelativePath": "js/logIn.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\logIn.js"
     },
     {
       "Identity": "D:\\Core\\MyTaskProject\\wwwroot\\js\\site.js",

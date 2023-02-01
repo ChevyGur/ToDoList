@@ -1,58 +1,58 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 using Task.Services;
 using Task.Interfaces;
 
 namespace Task.Controller
 {
+    using Microsoft.Net.Http.Headers;
     using Task.Models;
     [ApiController]
     [Route("[controller]")]
     public class TaskController : ControllerBase
     {
+        private ITaskService TaskService;
 
-        ITaskService TaskService;
-
-        public TaskController(ITaskService TaskService)
+        public TaskController(ITaskService taskService)
         {
-            this.TaskService = TaskService;
+            this.TaskService = taskService;
         }
 
-
-
-        [HttpGet("{token}")]
-        public ActionResult<IEnumerable<Task>> Get(string token)
+        [HttpGet]
+        [Authorize(Policy = "User")]
+        public ActionResult<List<Task>> Get()
         {
-            Console.WriteLine(token);
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
+            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
             return TaskService.GetAll(TokenService.decode(token));
-
         }
 
-        // [HttpGet("{id}")]
-        // public ActionResult<Task> Get(int id)
-        // {
-        //     var task = TaskService.Get(id);
-        //     if (task == null)
-        //         return NotFound();
-        //     return task;
-        // }
+        [HttpGet("{id}")]
+        [Authorize(Policy = "User")]
+        public ActionResult<Task> Get(int id)
+        {
+            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            var task = TaskService.Get(id, TokenService.decode(token));
+            if (task == null)
+                return NotFound();
+
+            return task;
+        }
 
         [HttpPost]
+        [Authorize(Policy = ("User"))]
         public ActionResult Post(Task t)
         {
+            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            t.UserId = TokenService.decode(token);
             TaskService.Post(t);
             return CreatedAtAction(nameof(Post), new { Id = t.Id }, t);
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, Task task)
+        [Authorize(Policy = "User")]
+
+        public ActionResult Put(int id, [FromBody] Task task)
         {
             if (id != task.Id)
                 return BadRequest("id <> task.Id");
@@ -63,13 +63,17 @@ namespace Task.Controller
         }
 
         [HttpDelete]
+        [Authorize(Policy = "User")]
         public ActionResult Delete(int id)
         {
-            var task = TaskService.Get(id);
+            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            int userId = TokenService.decode(token);
+            var task = TaskService.Get(id, userId);
             if (task == null)
                 return NotFound();
-            TaskService.Delete(id);
+            TaskService.Delete(id, userId);
             return NoContent();
         }
+
     }
 }

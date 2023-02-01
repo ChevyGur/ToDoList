@@ -1,15 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
-using Task.Models;
 using Task.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System;
-using System.Net;
 using System.Text.Json;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Task.Services
 {
@@ -39,27 +29,31 @@ namespace Task.Services
             File.WriteAllText(filePath, JsonSerializer.Serialize(tasks));
         }
 
-        public List<Task> GetAll(int UserId) => tasks.Where(t => t.UserId == UserId)?.ToList();
+        public List<Task> GetAll(int UserId) => tasks.Where(u => u.UserId == UserId).ToList();
 
-        public Task? Get(int Id) => tasks.FirstOrDefault(t => t.Id == Id);
+
+        public Task? Get(int Id, int userId) => tasks.FirstOrDefault(t => t.Id == Id && t.UserId == userId);
+
         public void Post(Task t)
         {
             t.Id = tasks.Count() + 1;
             tasks.Add(t);
+            saveToFile();
         }
 
-        public void Delete(int id)
+        public void Delete(int id, int userId)
         {
-            var task = Get(id);
-            if (task is null)
-                return;
+
+            var task = Get(id, userId);
             tasks.Remove(task);
             saveToFile();
         }
 
         public bool Update(Task t)
         {
-            var index = tasks.FindIndex(task => t.Id == task.Id);
+            var item = tasks.Find(task => t.Id == task.Id);
+            var index = tasks.FindIndex(task => task.Id == t.Id);
+            t.UserId = item.UserId;
             if (index == -1)
                 return false;
             tasks[index] = t;
