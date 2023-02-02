@@ -6,39 +6,33 @@
         "Password": "78jkj"
     },
     {
-        "Id": 103,
-        "Name": "Gili",
-        "IsAdmin": false,
-        "Password": "g178jkj"
-    },
-    {
         "Id": 104,
-        "Name": "fill",
+        "Name": "Alex",
         "IsAdmin": false,
-        "Password": "24356u5432"
+        "Password": "Irena"
     },
     {
         "Id": 105,
-        "Name": "RUTI",
+        "Name": "Irena",
         "IsAdmin": false,
-        "Password": "\u05E2\u05D4\u05E0\u05D9\u05D7\u05DE\u05DC\u05DA\u05E6\u05E3\u05EA,\u05E5."
+        "Password": "12234567"
     },
     {
         "Id": 106,
-        "Name": "Alex",
+        "Name": "Elisheva",
         "IsAdmin": false,
-        "Password": "kj4r4r"
+        "Password": "1234567890hy"
     },
     {
         "Id": 107,
-        "Name": "Irena",
+        "Name": "Dasi",
         "IsAdmin": false,
-        "Password": "\u05E2\u05D4\u05E0\u05D9\u05D7\u05DE\u05DC\u05DA\u05E6\u05E3\u05EA,\u05E5."
+        "Password": "dfgth5r45"
     },
     {
         "Id": 108,
-        "Name": "sari",
+        "Name": "Gili",
         "IsAdmin": false,
-        "Password": "frtgfg"
+        "Password": "g78jkj"
     }
 ]

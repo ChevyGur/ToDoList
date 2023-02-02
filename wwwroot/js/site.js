@@ -83,10 +83,7 @@ function deleteItem(id) {
             'Content-Type': 'application/json',
             'Authorization': "Bearer " + token
         }
-    })
-        .then(() => {
-            getItems(token)
-        })
+    }).then(() => { getItems(token) })
         .catch(error => console.error('Unable to delete item.', error));
 }
 
@@ -298,10 +295,7 @@ function deleteUser(id) {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
         },
-    }).then(() =>
-        deleteTaskByUserName(id)
-    )
-        .then(() => getAllUsers())
+    }).then(() => getAllUsers())
         .catch(error => console.log('Unable to delete user.', error));
 }
 
