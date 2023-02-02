@@ -189,7 +189,7 @@ function getAllUsers() {
     fetch(url, requestOptions)
         .then(response => response.json())
         .then(data => _displayUsers(data))
-        .catch(error => console.log('error', error));
+        .catch(error => { console.log('error', error), alert('Not Authorized!!') });
 
 }
 
@@ -287,7 +287,7 @@ function addUser() {
             getAllUsers();
             alert("The user is added into the system")
         })
-        .catch(error => alert(error));
+        .catch(() => alert("Not Authorized!!"));
 }
 
 function deleteUser(id) {
@@ -298,7 +298,7 @@ function deleteUser(id) {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
         },
-    }).then(()=>
+    }).then(() =>
         deleteTaskByUserName(id)
     )
         .then(() => getAllUsers())

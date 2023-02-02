@@ -36,7 +36,7 @@ namespace Task.Services
 
         public void Post(Task t)
         {
-            t.Id = tasks.Count() + 1;
+            t.Id = tasks[tasks.Count()-1].Id + 1;
             tasks.Add(t);
             saveToFile();
         }
