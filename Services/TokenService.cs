@@ -2,9 +2,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Task.Interfaces;
+using Tasks.Interfaces;
 
-namespace Task.Services
+namespace Tasks.Services
 {
     public class TokenService
     {
@@ -14,6 +14,7 @@ namespace Task.Services
 
         public TokenService()
         {
+            
         }
 
         public static SecurityToken GetToken(List<Claim> claims) =>
@@ -45,3 +46,4 @@ namespace Task.Services
         }
     }
 }
+

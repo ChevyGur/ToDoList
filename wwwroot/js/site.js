@@ -180,7 +180,7 @@ function getAllUsers() {
     var requestOptions = {
         method: 'GET',
         headers: myHeaders,
-        redirect: 'follow'
+        redirect: 'follow',
     };
 
     fetch(url, requestOptions)

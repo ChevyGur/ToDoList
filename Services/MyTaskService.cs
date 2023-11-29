@@ -1,55 +1,58 @@
-using Task.Interfaces;
+using Tasks.Interfaces;
 using System.Text.Json;
 
-namespace Task.Services
+namespace Tasks.Services
 {
-    using Task.Models;
+    using Tasks.Models;
     public class TaskService : ITaskService
     {
-        List<Task> tasks { get; }
-
+        List<Tasks> tasks { get; }
+        private readonly int UserId;
         private IWebHostEnvironment webHost;
         private string filePath;
-        public TaskService(IWebHostEnvironment webHost)
+        public TaskService(IWebHostEnvironment webHost, IHttpContextAccessor httpContextAccessor)
         {
-            this.webHost = webHost;
+            this.UserId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("Id")?.Value); 
+             this.webHost = webHost;
             this.filePath = Path.Combine(webHost.ContentRootPath, "Data", "task.json");
             using (var jsonFile = File.OpenText(filePath))
             {
-                tasks = JsonSerializer.Deserialize<List<Task>>(jsonFile.ReadToEnd(),
+                tasks = JsonSerializer.Deserialize<List<Tasks>>(jsonFile.ReadToEnd(),
                 new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 });
             }
         }
+        
 
         private void saveToFile()
         {
             File.WriteAllText(filePath, JsonSerializer.Serialize(tasks));
         }
 
-        public List<Task> GetAll(int UserId) => tasks.Where(u => u.UserId == UserId).ToList();
+        public List<Tasks> GetAll() => tasks.Where(u => u.UserId == UserId).ToList();
 
 
-        public Task? Get(int Id, int userId) => tasks.FirstOrDefault(t => t.Id == Id && t.UserId == userId);
+        public Tasks? Get(int Id) => tasks.FirstOrDefault(t => t.Id == Id && t.UserId == UserId);
 
-        public void Post(Task t)
+        public void Post(Tasks t)
         {
-            t.Id = tasks[tasks.Count()-1].Id + 1;
+            t.UserId = (int)this.UserId;
+            t.Id = tasks[tasks.Count() - 1].Id + 1;
             tasks.Add(t);
             saveToFile();
         }
 
-        public void Delete(int id, int userId)
+        public void Delete(int id)
         {
 
-            var task = Get(id, userId);
+            var task = Get(id);
             tasks.Remove(task);
             saveToFile();
         }
 
-        public bool Update(Task t)
+        public bool Update(Tasks t)
         {
             var item = tasks.Find(task => t.Id == task.Id);
             var index = tasks.FindIndex(task => task.Id == t.Id);

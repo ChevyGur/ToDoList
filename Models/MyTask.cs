@@ -1,8 +1,8 @@
 using System;
 
-namespace Task.Models
+namespace Tasks.Models
 {
-    public class Task
+    public class Tasks
     {
         public int Id { get; set; }
         public string? Name { get; set; }

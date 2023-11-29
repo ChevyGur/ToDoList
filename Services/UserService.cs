@@ -1,7 +1,7 @@
 namespace User.Services
 {
     using System.Text.Json;
-    using Task.Services;
+    using Tasks.Services;
     using User.Interfaces;
     using User.Models;
     public class UserService : IUserService

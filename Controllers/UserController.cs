@@ -1,12 +1,12 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Task.Services;
+using Tasks.Services;
 using User.Interfaces;
 namespace User.Controllers
 {
     using Microsoft.Net.Http.Headers;
-    using Task.Interfaces;
+
     using User.Models;
     [ApiController]
     [Route("[controller]")]
@@ -17,7 +17,7 @@ namespace User.Controllers
         {
             this.userService = userService;
         }
-        
+
         [HttpPost]
         [Route("[action]")]
         public ActionResult<String> Login([FromBody] User user)
@@ -36,7 +36,6 @@ namespace User.Controllers
             claims.Add(
                 new Claim("type", "User")
             );
-
 
             claims.Add(new Claim("Id", getUser.Id.ToString()));
             return new OkObjectResult(TokenService.WriteToken(TokenService.GetToken(claims)));

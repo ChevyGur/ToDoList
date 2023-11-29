@@ -1,21 +1,16 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
-using Task.Services;
+using Tasks.Services;
+// using Microsoft.AspNetCore.Http;
+using MyMiddleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(cfg =>
-    {
-        cfg.TokenValidationParameters = TokenService.GetTokenValidationParameters();
-    });
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -37,9 +32,14 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddSingleton<Task.Interfaces.ITaskService, Task.Services.TaskService>();
-
-builder.Services.AddSingleton<User.Interfaces.IUserService, User.Services.UserService>();
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(cfg =>
+    {
+        cfg.TokenValidationParameters = TokenService.GetTokenValidationParameters();
+    });
 
 builder.Services.AddAuthorization(cfg =>
         {
@@ -47,7 +47,16 @@ builder.Services.AddAuthorization(cfg =>
             cfg.AddPolicy("User", policy => policy.RequireClaim("type", "User"));
         });
 
+builder.Services.AddSingleton<Tasks.Interfaces.ITaskService, Tasks.Services.TaskService>();
+
+builder.Services.AddSingleton<User.Interfaces.IUserService, User.Services.UserService>();
+
+
+
 var app = builder.Build();
+
+
+
 if (app.Environment.IsDevelopment())
 {
 
@@ -59,6 +68,9 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
+
+app.UseMyLogMiddleware();
+
 
 app.UseAuthentication();
 
@@ -74,7 +86,7 @@ namespace OrderManagement
     {
         public static IServiceCollection AddOrders(this IServiceCollection services)
         {
-            services.AddScoped<Task.Interfaces.ITaskService, Task.Services.TaskService>();
+            services.AddScoped<Tasks.Interfaces.ITaskService, TaskService>();
             services.AddScoped<User.Interfaces.IUserService, User.Services.UserService>();
             return services;
         }
