@@ -69,7 +69,7 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
-app.UseMyLogMiddleware();
+app.UseMyLogMiddleware("logfile.txt");
 
 
 app.UseAuthentication();

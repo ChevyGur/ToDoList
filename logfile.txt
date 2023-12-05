@@ -1,0 +1,192 @@
+/favicon.ico.GET started at 2023-12-05 22:25:15.688
+/favicon.ico.GET ended at 129 ms. User: unknown
+/User/Login.POST started at 2023-12-05 22:25:38.568
+/User/Login.POST ended at 231 ms. User: unknown
+/Task.GET started at 2023-12-05 22:25:38.893
+/Task.GET ended at 97 ms. User: unknown
+/User/Login.POST started at 2023-12-05 22:26:10.110
+/User/Login.POST ended at 195 ms. User: unknown
+/Task.GET started at 2023-12-05 22:26:10.348
+/Task.GET ended at 59 ms. User: unknown
+/User/Login.POST started at 2023-12-05 22:27:03.640
+/User/Login.POST ended at 203 ms. User: unknown
+/Task.GET started at 2023-12-05 22:27:03.932
+/Task.GET ended at 71 ms. User: 102
+/Task.GET started at 2023-12-05 22:45:07.806
+/Task.GET ended at 487 ms. UserId: 102
+/favicon.ico.GET started at 2023-12-05 22:45:13.343
+/favicon.ico.GET ended at 5 ms. UserId: unknown
+/User/Login.POST started at 2023-12-05 22:56:09.082
+/User/Login.POST ended at 178 ms. UserId: unknown
+/UserLogin.POST started at 2023-12-05 22:56:53.516
+/UserLogin.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-05 22:57:03.146
+/User/Login.POST ended at 6 ms. UserId: unknown
+/User/Login.POST started at 2023-12-05 22:58:00.018
+/User/Login.POST ended at 16 ms. UserId: 102
+/User.GET started at 2023-12-05 22:58:47.877
+/User.GET ended at 20 ms. UserId: 102
+/User%0A.GET started at 2023-12-05 22:59:19.439
+/User%0A.GET ended at 2 ms. UserId: 102
+/User%0A.GET started at 2023-12-05 22:59:39.691
+/User%0A.GET ended at 1 ms. UserId: 102
+/User/Login.POST started at 2023-12-05 23:00:16.655
+/User/Login.POST ended at 4 ms. UserId: unknown
+/User%0A.GET started at 2023-12-05 23:00:55.656
+/User%0A.GET ended at 2 ms. UserId: 102
+/User%0A.GET started at 2023-12-05 23:01:06.075
+/User%0A.GET ended at 4 ms. UserId: unknown
+/User%0A.POST started at 2023-12-05 23:01:38.553
+/User%0A.POST ended at 2 ms. UserId: unknown
+/User%0A.POST started at 2023-12-05 23:01:55.194
+/User%0A.POST ended at 1 ms. UserId: 102
+/User/Login.POST started at 2023-12-05 23:10:17.404
+/User/Login.POST ended at 460 ms. UserId: unknown
+/Task.GET started at 2023-12-05 23:10:17.950
+/Task.GET ended at 128 ms. UserId: 102
+/User.GET started at 2023-12-05 23:12:20.383
+/User.GET ended at 25 ms. UserId: 102
+/Task.GET started at 2023-12-05 23:13:46.178
+/Task.GET ended at 10 ms. UserId: unknown
+/Task.GET started at 2023-12-05 23:13:56.775
+/Task.GET ended at 1 ms. UserId: 102
+/User/Login.POST started at 2023-12-05 23:14:41.762
+/User/Login.POST ended at 5 ms. UserId: unknown
+/User.GET started at 2023-12-05 23:14:47.820
+/User.GET ended at 1 ms. UserId: 102
+/Task.GET started at 2023-12-05 23:14:51.047
+/Task.GET ended at 1 ms. UserId: 102
+/swagger/index.htm.GET started at 2023-12-05 23:23:58.080
+/swagger/index.htm.GET ended at 133 ms. UserId: unknown
+/User/Login.POST started at 2023-12-05 23:24:24.006
+/User/Login.POST ended at 223 ms. UserId: unknown
+/User/Login.POST started at 2023-12-05 23:24:52.398
+/User/Login.POST ended at 11 ms. UserId: unknown
+/Task.GET started at 2023-12-05 23:26:15.708
+/Task.GET ended at 13 ms. UserId: unknown
+/Task.GET started at 2023-12-05 23:26:27.514
+/Task.GET ended at 82 ms. UserId: 102
+/Task.GET started at 2023-12-05 23:26:45.722
+/Task.GET ended at 3 ms. UserId: 102
+/User/Login.POST started at 2023-12-05 23:28:32.789
+/User/Login.POST ended at 2 ms. UserId: unknown
+/User/Login.POST started at 2023-12-05 23:48:47.093
+/User/Login.POST ended at 56 ms. UserId: unknown
+/Task.GET started at 2023-12-05 23:48:47.207
+/Task.GET ended at 2 ms. UserId: 102
+/User/Login.POST started at 2023-12-05 23:53:33.524
+/User/Login.POST ended at 1 ms. UserId: unknown
+/Task.GET started at 2023-12-05 23:54:46.873
+/Task.GET ended at 1 ms. UserId: 102
+/Task.GET started at 2023-12-05 23:54:55.190
+/Task.GET ended at 2 ms. UserId: 102
+/User/Login.POST started at 2023-12-05 23:55:52.136
+/User/Login.POST ended at 2 ms. UserId: unknown
+/Task.GET started at 2023-12-05 23:55:52.236
+/Task.GET ended at 1 ms. UserId: 102
+/User/Login.POST started at 2023-12-05 23:56:04.533
+/User/Login.POST ended at 1 ms. UserId: unknown
+/Task.GET started at 2023-12-05 23:56:04.621
+/Task.GET ended at 0 ms. UserId: 102
+/User/Login.POST started at 2023-12-05 23:56:31.251
+/User/Login.POST ended at 2 ms. UserId: unknown
+/Task.GET started at 2023-12-05 23:56:31.329
+/Task.GET ended at 1 ms. UserId: 102
+/User/Login.POST started at 2023-12-05 23:58:58.198
+/User/Login.POST ended at 2 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:01:39.568
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:02:46.661
+/User/Login.POST ended at 14 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:03:05.540
+/User/Login.POST ended at 2 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:03:17.547
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:03:40.305
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:04:13.397
+/User/Login.POST ended at 2 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:04:42.762
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:05:50.250
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:06:17.676
+/User/Login.POST ended at 2 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:06:28.061
+/User/Login.POST ended at 1 ms. UserId: unknown
+/Task.GET started at 2023-12-06 00:06:38.645
+/Task.GET ended at 1 ms. UserId: 102
+/User/Login.OPTIONS started at 2023-12-06 00:11:47.709
+/User/Login.OPTIONS ended at 34 ms. UserId: unknown
+/Task.OPTIONS started at 2023-12-06 00:12:14.798
+/Task.OPTIONS ended at 0 ms. UserId: unknown
+/Task.OPTIONS started at 2023-12-06 00:12:16.676
+/Task.OPTIONS ended at 0 ms. UserId: unknown
+/Task.OPTIONS started at 2023-12-06 00:12:20.202
+/Task.OPTIONS ended at 1 ms. UserId: unknown
+/Task.OPTIONS started at 2023-12-06 00:12:22.647
+/Task.OPTIONS ended at 1 ms. UserId: unknown
+/Task.OPTIONS started at 2023-12-06 00:12:54.326
+/Task.OPTIONS ended at 0 ms. UserId: unknown
+/User/Login.OPTIONS started at 2023-12-06 00:15:26.810
+/User/Login.OPTIONS ended at 0 ms. UserId: unknown
+/User/Login.OPTIONS started at 2023-12-06 00:15:28.557
+/User/Login.OPTIONS ended at 0 ms. UserId: unknown
+/User/Login.OPTIONS started at 2023-12-06 00:16:28.847
+/User/Login.OPTIONS ended at 1 ms. UserId: unknown
+/User/Login.OPTIONS started at 2023-12-06 00:18:23.650
+/User/Login.OPTIONS ended at 37 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:19:58.527
+/User/Login.POST ended at 57 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:20:25.966
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:20:36.707
+/User/Login.POST ended at 2 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:20:38.546
+/User/Login.POST ended at 2 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:20:53.264
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:21:10.413
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:21:20.497
+/User/Login.POST ended at 0 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:21:41.261
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:21:51.146
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:22:11.467
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:22:28.297
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:23:30.791
+/User/Login.POST ended at 4 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:24:13.953
+/User/Login.POST ended at 1 ms. UserId: unknown
+/User/Login.POST started at 2023-12-06 00:24:54.838
+/User/Login.POST ended at 0 ms. UserId: unknown
+/Task.GET started at 2023-12-06 00:25:39.451
+/Task.GET ended at 6 ms. UserId: 102
+/Task.GET started at 2023-12-06 00:26:08.987
+/Task.GET ended at 2 ms. UserId: 102
+/Task.GET started at 2023-12-06 00:27:26.293
+/Task.GET ended at 1 ms. UserId: 102
+/Task.GET started at 2023-12-06 00:27:32.955
+/Task.GET ended at 1 ms. UserId: 102
+/Task.GET started at 2023-12-06 00:27:39.628
+/Task.GET ended at 1 ms. UserId: 102
+/Task.GET started at 2023-12-06 00:27:46.325
+/Task.GET ended at 1 ms. UserId: 102
+/Task.GET started at 2023-12-06 00:28:12.707
+/Task.GET ended at 1 ms. UserId: 102
+/Task.GET started at 2023-12-06 00:28:18.863
+/Task.GET ended at 12 ms. UserId: 102
+/Task.GET started at 2023-12-06 00:29:53.131
+/Task.GET ended at 2 ms. UserId: 102
+/User/Login.OPTIONS started at 2023-12-06 00:31:34.473
+/User/Login.OPTIONS ended at 0 ms. UserId: unknown
+/User/Login.OPTIONS started at 2023-12-06 00:31:43.881
+/User/Login.OPTIONS ended at 0 ms. UserId: unknown
+/User/Login.OPTIONS started at 2023-12-06 00:31:49.954
+/User/Login.OPTIONS ended at 0 ms. UserId: unknown
+/User/Login.OPTIONS started at 2023-12-06 00:33:55.991
+/User/Login.OPTIONS ended at 0 ms. UserId: unknown

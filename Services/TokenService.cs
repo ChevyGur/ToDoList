@@ -14,7 +14,7 @@ namespace Tasks.Services
 
         public TokenService()
         {
-            
+
         }
 
         public static SecurityToken GetToken(List<Claim> claims) =>
@@ -31,19 +31,11 @@ namespace Tasks.Services
                 ValidIssuer = issuer,
                 ValidAudience = issuer,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SXkSqsKyNUyvGbnHs7ke2NCq8zQzNLW7mPmHbnZZ")),
-                ClockSkew = TimeSpan.Zero, 
+                ClockSkew = TimeSpan.Zero,
             };
 
         public static string WriteToken(SecurityToken token) =>
             new JwtSecurityTokenHandler().WriteToken(token);
-
-        public static int decode(String st)
-        {
-            var handler = new JwtSecurityTokenHandler();
-            var decodedValue = handler.ReadJwtToken(st) as JwtSecurityToken;
-            var id = int.Parse(decodedValue.Claims.First(claim => claim.Type == "Id").Value);
-            return id;
-        }
     }
 }
 

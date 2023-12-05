@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tasks.Services;
 using User.Interfaces;
+
 namespace User.Controllers
 {
-    using Microsoft.Net.Http.Headers;
 
     using User.Models;
     [ApiController]
@@ -23,7 +23,7 @@ namespace User.Controllers
         public ActionResult<String> Login([FromBody] User user)
         {
             var claims = new List<Claim>();
-            var getUser = userService.GetAll().FirstOrDefault(c => c.Name == user.Name && c.Password == user.Password);
+            var getUser = userService.GetAll()?.FirstOrDefault(c => c.Name == user.Name && c.Password == user.Password);
             if (getUser == null)
                 return Unauthorized();
             if (getUser.IsAdmin)
@@ -43,14 +43,13 @@ namespace User.Controllers
 
         [HttpGet]
         [Authorize(Policy = "Admin")]
-        public ActionResult<List<User>> GetAll() => userService.GetAll();
+        public ActionResult<List<User>?> GetAll() => userService.GetAll();
 
         [HttpGet("{id}")]
         [Authorize(Policy = "User")]
         public ActionResult<User> GetMyUser()
         {
-            var token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
-            var user = userService.Get(TokenService.decode(token));
+            var user = userService.Get();
             if (user == null)
                 return NotFound();
             return user;
@@ -68,7 +67,7 @@ namespace User.Controllers
         [Authorize(Policy = "Admin")]
         public ActionResult Delete(int id)
         {
-            var user = userService.Get(id);
+            var user = userService.Get();
             if (user == null)
                 return NotFound();
             userService.Delete(id);
