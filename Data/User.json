@@ -34,5 +34,23 @@
         "Name": "RUTI",
         "IsAdmin": false,
         "Password": "5trff"
+    },
+    {
+        "Id": 110,
+        "Name": "figi\u0060",
+        "IsAdmin": false,
+        "Password": "figi"
+    },
+    {
+        "Id": 111,
+        "Name": "teud",
+        "IsAdmin": false,
+        "Password": "nice"
+    },
+    {
+        "Id": 112,
+        "Name": "hi",
+        "IsAdmin": false,
+        "Password": "hihiii"
     }
 ]

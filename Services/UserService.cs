@@ -1,22 +1,18 @@
 namespace User.Services
 {
     using System.Text.Json;
-    using Tasks.Services;
     using User.Interfaces;
     using User.Models;
     public class UserService : IUserService
     {
         List<User> users { get; }
-        private readonly int userId;
 
         static int nextId = 100;
 
         private IWebHostEnvironment webHost;
         private string filePath;
-        public UserService(IWebHostEnvironment webHost, IHttpContextAccessor httpContextAccessor)
+        public UserService(IWebHostEnvironment webHost)
         {
-            this.userId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("Id")?.Value);
-
             this.webHost = webHost;
             this.filePath = Path.Combine(webHost.ContentRootPath, "Data", "User.json");
             using (var jsonFile = File.OpenText(filePath))
@@ -35,7 +31,7 @@ namespace User.Services
 
         public List<User>? GetAll() => users;
 
-        public User? Get() => users?.FirstOrDefault(t => t.Id == userId);
+        public User? Get(int userId) => users?.FirstOrDefault(t => t.Id == userId);
 
         public void Post(User u)
         {
@@ -46,7 +42,7 @@ namespace User.Services
 
         public void Delete(int id)
         {
-            var user = Get();
+            var user = Get(id);
             if (user is null)
                 return;
             users.Remove(user);

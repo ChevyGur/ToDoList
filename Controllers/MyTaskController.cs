@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Tasks.Services;
 using Tasks.Interfaces;
 
 namespace Tasks.Controller
@@ -11,8 +10,13 @@ namespace Tasks.Controller
     public class TaskController : ControllerBase
     {
         private ITaskService TaskService;
-            public TaskController(ITaskService taskService)
+
+        private readonly int userId;
+
+        public TaskController(ITaskService taskService, IHttpContextAccessor httpContextAccessor)
         {
+            this.userId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("Id")?.Value);
+
             this.TaskService = taskService;
         }
 
@@ -20,14 +24,14 @@ namespace Tasks.Controller
         [Authorize(Policy = "User")]
         public ActionResult<List<Tasks>> Get()
         {
-            return TaskService.GetAll();
+            return TaskService.GetAll(userId);
         }
 
         [HttpGet("{id}")]
         [Authorize(Policy = "User")]
         public ActionResult<Tasks> Get(int id)
         {
-            var task = TaskService.Get(id);
+            var task = TaskService.Get(userId, id);
             if (task == null)
                 return NotFound();
 
@@ -38,7 +42,7 @@ namespace Tasks.Controller
         [Authorize(Policy = ("User"))]
         public ActionResult Post(Tasks t)
         {
-            TaskService.Post(t);
+            TaskService.Post(userId, t);
             return CreatedAtAction(nameof(Post), new { Id = t.Id }, t);
         }
 
@@ -49,9 +53,11 @@ namespace Tasks.Controller
         {
             if (id != task.Id)
                 return BadRequest("id <> task.Id");
-            var res = TaskService.Update(task);
-            if (!res)
+            var item = TaskService.Get(userId, task.Id);
+            if (item is null)
                 return NotFound();
+
+            TaskService.Update(userId, task);
             return NoContent();
         }
 
@@ -59,10 +65,10 @@ namespace Tasks.Controller
         [Authorize(Policy = "User")]
         public ActionResult Delete(int id)
         {
-            var task = TaskService.Get(id);
+            var task = TaskService.Get(userId, id);
             if (task == null)
                 return NotFound();
-            TaskService.Delete(id);
+            TaskService.Delete(userId, id);
             return NoContent();
         }
 

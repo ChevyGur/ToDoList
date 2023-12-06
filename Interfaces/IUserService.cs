@@ -5,7 +5,7 @@ namespace User.Interfaces
     public interface IUserService
     {
         List<User>? GetAll();
-        User Get();
+        User Get(int userId);
         void Post(User t);
         void Delete(int id);
     }

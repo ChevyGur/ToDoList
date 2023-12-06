@@ -1,6 +1,7 @@
 const uri = '/Task';
 let tasks = [];
 let token = sessionStorage.getItem("token");
+let flag = false;
 
 
 getItems(token);
@@ -225,7 +226,6 @@ function _displayUsers(data) {
 
 }
 
-let flag = false;
 function getMyUser() {
     if (flag)
         return;
@@ -300,6 +300,7 @@ function deleteUser(id) {
 }
 
 function logOut() {
+    sessionStorage.clear();
     location.href = "/index.html";
 }
 

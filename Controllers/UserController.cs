@@ -13,32 +13,12 @@ namespace User.Controllers
     public class UserController : ControllerBase
     {
         IUserService userService;
-        public UserController(IUserService userService)
+        private readonly int userId;
+
+        public UserController(IUserService userService, IHttpContextAccessor httpContextAccessor)
         {
+            this.userId = int.Parse(httpContextAccessor?.HttpContext?.User.FindFirst("Id")?.Value);
             this.userService = userService;
-        }
-
-        [HttpPost]
-        [Route("[action]")]
-        public ActionResult<String> Login([FromBody] User user)
-        {
-            var claims = new List<Claim>();
-            var getUser = userService.GetAll()?.FirstOrDefault(c => c.Name == user.Name && c.Password == user.Password);
-            if (getUser == null)
-                return Unauthorized();
-            if (getUser.IsAdmin)
-            {
-                claims.Add(
-                    new Claim("type", "Admin")
-                );
-            }
-
-            claims.Add(
-                new Claim("type", "User")
-            );
-
-            claims.Add(new Claim("Id", getUser.Id.ToString()));
-            return new OkObjectResult(TokenService.WriteToken(TokenService.GetToken(claims)));
         }
 
         [HttpGet]
@@ -49,7 +29,7 @@ namespace User.Controllers
         [Authorize(Policy = "User")]
         public ActionResult<User> GetMyUser()
         {
-            var user = userService.Get();
+            var user = userService.Get(userId);
             if (user == null)
                 return NotFound();
             return user;
@@ -63,14 +43,14 @@ namespace User.Controllers
             return CreatedAtAction(nameof(Post), new { Id = user.Id }, user);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [Authorize(Policy = "Admin")]
         public ActionResult Delete(int id)
         {
-            var user = userService.Get();
+            var user = userService.Get(id);
             if (user == null)
                 return NotFound();
-            userService.Delete(id);
+            userService.Delete( id);
             return NoContent();
         }
 

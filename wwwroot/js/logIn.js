@@ -1,4 +1,4 @@
-const url = '/User';
+const url = '/Login';
 function Login() {
     sessionStorage.clear();
     var myHeaders = new Headers();
@@ -17,7 +17,7 @@ function Login() {
         redirect: "follow",
     };
 
-    fetch(`${url}/Login`, requestOptions)
+    fetch(url, requestOptions)
         .then((response) => response.text())
         .then((result) => {
             if (result.includes("401")) {
