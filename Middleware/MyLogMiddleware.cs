@@ -20,7 +20,7 @@ namespace MyMiddleware
             var sw = new Stopwatch();
             sw.Start();
 
-            string logMessage = $"{act} started at {DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}";
+            string logMessage = $"{act} started at: {DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}";
             WriteLogToFile(logMessage);
 
             await next.Invoke(c);

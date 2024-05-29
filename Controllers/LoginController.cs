@@ -40,8 +40,6 @@ namespace User.Controllers
             return new OkObjectResult(TokenService.WriteToken(TokenService.GetToken(claims)));
         }
 
-      
-
     }
 
 }

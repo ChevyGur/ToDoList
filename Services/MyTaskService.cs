@@ -24,7 +24,6 @@ namespace Tasks.Services
             }
         }
 
-
         private void saveToFile()
         {
             File.WriteAllText(filePath, JsonSerializer.Serialize(tasks));
